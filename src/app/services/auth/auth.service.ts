@@ -55,7 +55,7 @@ export class AuthService {
 
   constructor(private cookieService: CookieService, public afauth: AngularFireAuth, private functions: AngularFireFunctions, public themeService: ThemeService) { }
 
-  async createUser(email: string, password: string, username: string) {
+  async  createUser(email: string, password: string, username: string) {
     await this.afauth.createUserWithEmailAndPassword(email, password);
     const user = firebase.auth().currentUser;
     user.updateProfile({
@@ -67,10 +67,21 @@ export class AuthService {
     });
   }
 
-  async loginUser(email: string, password: string) {
+  async loginUser(email: string, password: string) { 
     await this.afauth.signInWithEmailAndPassword(email, password);
   }
 
+  async forgotPassword(email: string){
+    console.log("REached", email);
+    await this.afauth.sendPasswordResetEmail(email);
+  }
+  async verifyPasswordResetActionCode(actionCode: string){
+    await this.afauth.verifyPasswordResetCode(actionCode);
+  }
+  async confirmPasswordReset(actionCode: string, newPassword: string){
+    console.log(actionCode, newPassword);
+    await this.afauth.confirmPasswordReset(actionCode, newPassword);
+  }
   createUserData(user: User) {
     const callable = this.functions.httpsCallable('users/createNewUser');
     callable({ uid: user.uid, photoURL: user.photoURL, displayName: user.displayName, email: user.email, phoneNumber: user.phoneNumber, providerId: user.providerId }).subscribe({

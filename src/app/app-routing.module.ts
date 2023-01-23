@@ -56,6 +56,7 @@ import { AllNotificationComponent } from './header/notification-center/all-notif
 import { CurrenPlanComponent } from './body/curren-plan/curren-plan.component';
 import { PaymentStatusComponent } from './body/payment-status/payment-status.component';
 import { StandardSubscriptionComponent } from './body/standard-subscription/standard-subscription.component';
+import { ResetPasswordComponent } from './body/reset-password/reset-password.component';
 
 const redirectLoggedInToDashboard = () => redirectLoggedInTo(['MyDashboard']);
 
@@ -105,6 +106,16 @@ const routes: Routes = [
   { path: 'Notifications', component:AllNotificationComponent },
   { path: 'PaymentStatus/:orderId/:paymentId/:signature/:subscriptionId', component:PaymentStatusComponent, canActivate:[AngularFireAuthGuard] },
   { path: 'Standard', component:StandardSubscriptionComponent},
+  {
+    path: 'auth',
+    children: [
+      {
+        path: 'resetPass',
+        component: ResetPasswordComponent,
+        data: { title: 'Reset Password' }
+      }
+    ]
+  },
   { path: '**', pathMatch: 'full', component: PagenotfoundComponent },
 ];
 
