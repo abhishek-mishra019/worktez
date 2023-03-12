@@ -21,4 +21,7 @@ export class DocumentationsComponent implements OnInit {
   features() {
     this.router.navigate(['/Features', 'boards'])
   }
+  blogs(){
+    this.router.navigate(['/Blogs']);
+  }
 }

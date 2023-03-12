@@ -61,6 +61,7 @@ import { ReleaseDetailsComponent } from './body/release-details/release-details.
 import { DocumentationsComponent } from './body/documentations/documentations.component';
 import { GetStartedComponent } from './body/get-started/get-started.component';
 import { FeaturesPageComponent } from './body/features-page/features-page.component';
+import { BlogsComponent } from './body/blogs/blogs.component';
 
 const redirectLoggedInToDashboard = () => redirectLoggedInTo(['MyDashboard']);
 
@@ -115,6 +116,7 @@ const routes: Routes = [
   { path: 'Documentations', component:DocumentationsComponent },
   { path: 'GettingStarted', component: GetStartedComponent },
   { path: 'Features/:currentSection', component: FeaturesPageComponent,},
+  {path: 'Blogs', component: BlogsComponent},
   { path: '**', pathMatch: 'full', component: PagenotfoundComponent },
 ];
 
